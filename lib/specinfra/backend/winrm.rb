@@ -11,7 +11,7 @@ module Specinfra
         script = create_script(cmd)
         winrm = get_config(:winrm)
 
-        result = winrm.powershell(script)
+        result = winrm.run_powershell_script(script)
         stdout, stderr = [:stdout, :stderr].map do |s|
           result[:data].select {|item| item.key? s}.map {|item| item[s]}.join
         end
